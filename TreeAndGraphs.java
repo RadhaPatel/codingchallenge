@@ -18,6 +18,18 @@ public class TreeAndGraphs{
 		}
 
 	}
+
+	public class TreeNode{
+		int data; 
+		TreeNode right; 
+		TreeNode left; 
+
+		public TreeNode(int data){
+			this.data = data; 
+			left = null; 
+			right = null; 
+		}
+	}
 	public static void main(String[] args){
 
 	}
@@ -93,6 +105,7 @@ public class TreeAndGraphs{
 	 public TreeNode minTree(int[] arr, int first, int last){
 	 	if(end < start)
 	 		return null; 
+	 	
 	 	int middle = (last + first) / 2; 
 	 	TreeNode root = new Node(arr[middle]); 
 	 	root.left = minTree(arr, 0, middle - 1); 
