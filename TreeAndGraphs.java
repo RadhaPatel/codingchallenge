@@ -112,4 +112,43 @@ public class TreeAndGraphs{
 	 	root.right = minTree(arr, middle + 1, last); 
 	 	return root; 
 	 }
+
+	 /*
+	 	4.3 List of Depth: Given a BST create a linked list of all the nodes at each depth. 
+	 	If the tree has D levels - then there will be D linked lists
+
+	 	Method: BFS - each search out should create a new list 
+	 */
+	 public List<LinkedList<Integer>> depthList(TreeNode root){
+	 	List<LinkedList<Integer>> mList = new List<LinkedList<Integer>>(); 
+
+	 	depthList(mList, root, 1); 
+	 	return mList; 
+	 }
+
+	 public void depthList(List<LinkedList<Integer>> masterList, TreeNode root, int level){
+	 	if(root == null){
+	 		return; 
+	 	}
+	 	LinkedList<Integer> dlist = null; 
+	 	if(masterList.size() == level){
+	 		dlist = new LinkedList<Integer>();  
+	 		masterList.add(dlist); 
+	 	} 
+	 	else {
+	 		dlist = masterList.get(level); 
+	 	}
+	 	dlist.add(root); 
+	 	
+	 	depthList(masterList, root.right, level + 1); 
+	 	depthList(masterList, root.left, level + 1); 
+	 }
+
+
+
+
+
+
+
+
 }
