@@ -13,7 +13,7 @@ public class TreeAndGraphs{
 
 		}
 
-		public visit(){
+		public void visit(){
 			this.visited = true; 
 		}
 
@@ -139,16 +139,83 @@ public class TreeAndGraphs{
 	 		dlist = masterList.get(level); 
 	 	}
 	 	dlist.add(root); 
-	 	
+
 	 	depthList(masterList, root.right, level + 1); 
 	 	depthList(masterList, root.left, level + 1); 
 	 }
 
+	 /*
+	 4.4 Check Balanced: Check if a BST is balanced (meaning that the height of the subtrees of any node never differ by more than one)
+	 */
+	 public boolean checkBalanced(TreeNode root){
+	 	if(root == null)
+	 		return; 
+	 	int heightDiff = Math.abs(getHeight(root.right) - getHeight(root.left)) + 1 ; 
+	 	if(heightDiff > 1){
+	 		return false; 
+	 	}
+	 	return checkBalanced(root.left) && checkBalanced(root.right); 
+
+	 }
+
+	 public int getHeight(Node root){
+	 	if(root == null)
+	 		return -1; 
+	 	return Math.max(getHeight(root.right), getHeight(root.left)); 
+	 }
 
 
+	 /*
+	 4.5 Valid BST: Implement a function to check if a BT is a BST
 
+	 METHOD: look on the left and check if its less than root, look on the right and check if tis greater than roote
+	 */
+	 public boolean isValidBST(TreeNode root){
+	 	if(root == null)
+	 		return true; 
 
+	 	if(root.left != null){
+	 		if(root.left.data < root.data){
+	 			return isValidBST(root.left); 
+	 		}
+	 		else{
+	 			return false; 
+	 		}
+	 	}
 
+	 	if(root.right != null){
+	 		if(root.right.data >= root.data){
+	 			return isValidBST(root.right); 
+	 		} else{
+	 			return false; 
+	 		}
+	 	}
+
+	 	return true; 
+
+	 }
+
+	 //Book Soulution for 4.45 - vat?
+	 public boolen isValidBST_Book(TreeNode root){
+	 	if(root == null)
+	 		return true; 
+
+	 	if(!isValidBST_Book(root.left)){
+	 		return false;
+	 	}
+
+	 	if(last_data != null && root.data <= last_data){
+	 		return false;
+	 	}
+
+	 	last_data = n.data; 
+
+	 	if(!isValidBST_Book(root.right)){
+	 		return false; 
+	 	}
+
+	 	return true; 
+	 }
 
 
 }
