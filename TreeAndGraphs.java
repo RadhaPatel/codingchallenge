@@ -23,13 +23,17 @@ public class TreeAndGraphs{
 		int data; 
 		TreeNode right; 
 		TreeNode left; 
+		TreeNode parent; 
 
 		public TreeNode(int data){
 			this.data = data; 
 			left = null; 
 			right = null; 
+			parent = null; 
 		}
 	}
+	
+
 	public static void main(String[] args){
 
 	}
@@ -217,5 +221,41 @@ public class TreeAndGraphs{
 	 	return true; 
 	 }
 
+	 /*
+	 ****************** MIRCOSOFT QUESTION *************************
+	 4.6 Successor: Write an algorithm to find the next node (inorder successor) of a given node in a BST. Each node has a link to its parent. 
+
+	 METHOD: 
+	 1. Look to see if node has a right child, then return the leftmost node in of the right subtree 
+	 2. If no right child, then check if node is a right child and keep going up until it is the left child
+	 3. if there is no left child then return null??? or the parent. idk this is to stressful and im sleepy 
+	 */
+	public Node successor(TreeNode node){
+	 	if(n == null )
+	 		return null; 
+	 	// Case 1 
+	 	if(n.right != null){
+	 		if(n == null){
+	 			return null; 
+	 		} else{
+	 			n = n.right; 
+	 			while(n.left != null){
+	 				n = n.left; 
+	 			}
+	 			return n; 
+	 		}
+	 	}
+	 	// Case 2: No right child - look for parent until you find that its the left child
+	 	else{
+	 		Node parent = n.parent; 
+	 		while (parent != null && parent.right == n){
+	 			n = parent; 
+	 			parent = n.parent; 
+	 		}
+	 		return parent; 
+	 	}
+	}
+
+	
 
 }
