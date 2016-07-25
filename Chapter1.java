@@ -144,5 +144,15 @@ to check if they are one efir (or zero edits) away;
 		return newMatrix; 
 	}
 
+	/*
+		1.9: String Rotation: Check if a substring is a rotation of the other
+	*/
+		public static isRotation(String s1, String s2){
+			String s1check = s1 + s1; 
+			if(s1.length() == s2.length() && s1 != null && s2 != null)
+				return isSubstring(s1check, s2); 
+			return false; 
+		}
+
 
 }
